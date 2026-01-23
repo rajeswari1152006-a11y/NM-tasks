@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DevOps CI/CD Dashboard</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #eef2f7, #dbeafe);
+}
+
+header {
+    background: linear-gradient(90deg, #0f172a, #1e293b);
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+header p {
+    margin-top: 6px;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+.card {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    font-weight: 600;
+    color: #1f2933;
+    margin-bottom: 10px;
+}
+
+.success { color: #16a34a; font-weight: 600; }
+.warning { color: #f59e0b; font-weight: 600; }
+.danger  { color: #dc2626; font-weight: 700; }
+
+.number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
+    margin-top: 10px;
+    color: #0f172a;
+}
+
+footer {
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Automated Deployment Dashboard</h1>
+    <p>Live Traffic Monitoring</p>
+</header>
+
+<section class="cards">
+    <div class="card">
+        <h2>Build Status</h2>
+        <p class="success">RUNNING</p>
+    </div>
+
+    <div class="card">
+        <h2>Kubernetes Pods</h2>
+        <p id="pods" class="number success">2</p>
+    </div>
+
+    <div class="card">
+        <h2>Live Traffic (req/sec)</h2>
+        <p id="traffic" class="number">0</p>
+        <p id="trafficStatus">Normal</p>
+    </div>
+</section>
+
+<footer>
+    <p>DevOps Internship Program EBPL-2025</p>
+</footer>
+
+<script>
+let traffic = 0;
+let pods = 2;
+
+function updateTraffic() {
+    traffic = Math.floor(Math.random() * 300);
+
+    const trafficEl = document.getElementById("traffic");
+    const statusEl = document.getElementById("trafficStatus");
+    const podsEl = document.getElementById("pods");
+
+    trafficEl.innerText = traffic;
+
+    if (traffic < 100) {
+        statusEl.innerHTML = "<span class='success'>Normal Traffic</span>";
+    } 
+    else if (traffic < 200) {
+        statusEl.innerHTML = "<span class='warning'>Medium Traffic</span>";
+    } 
+    else {
+        statusEl.innerHTML = "<span class='danger'>High Traffic</span>";
+        pods = Math.min(pods + 1, 6);
+        podsEl.innerText = pods;
+    }
+}
+
+setInterval(updateTraffic, 1000);
+</script>
+
+</body>
+</html>
