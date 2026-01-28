@@ -1,86 +1,125 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DevOps CI/CD Dashboard</title>
+<title>DevOps CI/CD Monitoring Dashboard</title>
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(120deg, #eef2f7, #dbeafe);
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #0a0f1e, #020617);
+  color: #e0f2fe;
+  overflow-x: hidden;
+  text-align: center;
 }
 
+/* Header Styling */
 header {
-    background: linear-gradient(90deg, #0f172a, #1e293b);
-    color: white;
-    text-align: center;
-    padding: 25px;
+  padding: 50px 20px 30px;
+  background: transparent;
 }
 
 header h1 {
-    margin: 0;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 1px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 36px;
+  color: #60a5fa;
+  text-shadow: 0 0 20px #38bdf8, 0 0 40px #1e3a8a;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
 }
 
 header p {
-    margin-top: 6px;
-    font-size: 16px;
-    opacity: 0.9;
+  font-size: 16px;
+  color: #bae6fd;
+  text-shadow: 0 0 10px #0ea5e9;
 }
 
+/* Dashboard Card Layout */
 .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
-    padding: 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 40px;
 }
 
+/* Each Card */
 .card {
-    background: white;
-    padding: 25px 20px;
-    border-radius: 14px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    transition: transform 0.2s;
+  background: rgba(14, 165, 233, 0.05);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 16px;
+  padding: 25px 30px;
+  width: 260px;
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.3), inset 0 0 20px rgba(59,130,246,0.1);
+  transition: 0.3s ease-in-out;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(14,165,233,0.7);
 }
 
+/* Card Headings */
 .card h2 {
-    font-weight: 600;
-    color: #1f2933;
-    margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #f1f5f9;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba(56,189,248,0.8);
 }
 
-.success { color: #16a34a; font-weight: 600; }
-.warning { color: #f59e0b; font-weight: 600; }
-.danger  { color: #dc2626; font-weight: 700; }
+/* Neon Texts */
+.success {
+  color: #22c55e;
+  text-shadow: 0 0 15px #22c55e, 0 0 25px #16a34a;
+}
 
+.warning {
+  color: #facc15;
+  text-shadow: 0 0 15px #facc15, 0 0 25px #ca8a04;
+}
+
+.danger {
+  color: #ef4444;
+  text-shadow: 0 0 15px #ef4444, 0 0 25px #dc2626;
+}
+
+/* Numbers */
 .number {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 36px;
-    margin-top: 10px;
-    color: #0f172a;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 40px;
+  color: #38bdf8;
+  text-shadow: 0 0 25px #38bdf8, 0 0 50px #0ea5e9;
+  margin-top: 10px;
 }
 
+/* Footer */
 footer {
-    background: #0f172a;
-    color: white;
-    text-align: center;
-    padding: 12px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    font-size: 14px;
-    letter-spacing: 0.5px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  background: #020617;
+  padding: 20px;
+  font-size: 15px;
+  color: #93c5fd;
+  box-shadow: 0 -5px 20px rgba(56,189,248,0.2);
+}
+
+footer a {
+  color: #38bdf8;
+  text-decoration: none;
+  margin-left: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+footer a:hover {
+  color: #facc15;
+  text-shadow: 0 0 10px #facc15;
 }
 </style>
 </head>
@@ -88,30 +127,31 @@ footer {
 <body>
 
 <header>
-    <h1>Automated Deployment Dashboard</h1>
-    <p>Live Traffic Monitoring</p>
+  <h1>🚀 DevOps CI/CD Monitoring Dashboard</h1>
+  <p>Real-Time Deployment & Traffic Insights</p>
 </header>
 
 <section class="cards">
-    <div class="card">
-        <h2>Build Status</h2>
-        <p class="success">RUNNING</p>
-    </div>
+  <div class="card">
+    <h2>Build Status</h2>
+    <p class="success" id="buildStatus">RUNNING</p>
+  </div>
 
-    <div class="card">
-        <h2>Kubernetes Pods</h2>
-        <p id="pods" class="number success">2</p>
-    </div>
+  <div class="card">
+    <h2>Kubernetes Pods</h2>
+    <p id="pods" class="number success">2</p>
+  </div>
 
-    <div class="card">
-        <h2>Live Traffic (req/sec)</h2>
-        <p id="traffic" class="number">0</p>
-        <p id="trafficStatus">Normal</p>
-    </div>
+  <div class="card">
+    <h2>Live Traffic (req/sec)</h2>
+    <p id="traffic" class="number">0</p>
+    <p id="trafficStatus">Normal</p>
+  </div>
 </section>
 
 <footer>
-    <p>DevOps Internship Program EBPL-2025</p>
+  DevOps Internship Program EBPL-2025 | 
+  <a href="https://github.com/rajeswari1152006-a11y/NM-tasks" target="_blank">🌐 View on GitHub</a>
 </footer>
 
 <script>
@@ -119,25 +159,23 @@ let traffic = 0;
 let pods = 2;
 
 function updateTraffic() {
-    traffic = Math.floor(Math.random() * 300);
+  traffic = Math.floor(Math.random() * 300);
 
-    const trafficEl = document.getElementById("traffic");
-    const statusEl = document.getElementById("trafficStatus");
-    const podsEl = document.getElementById("pods");
+  const trafficEl = document.getElementById("traffic");
+  const statusEl = document.getElementById("trafficStatus");
+  const podsEl = document.getElementById("pods");
 
-    trafficEl.innerText = traffic;
+  trafficEl.innerText = traffic;
 
-    if (traffic < 100) {
-        statusEl.innerHTML = "<span class='success'>Normal Traffic</span>";
-    } 
-    else if (traffic < 200) {
-        statusEl.innerHTML = "<span class='warning'>Medium Traffic</span>";
-    } 
-    else {
-        statusEl.innerHTML = "<span class='danger'>High Traffic</span>";
-        pods = Math.min(pods + 1, 6);
-        podsEl.innerText = pods;
-    }
+  if (traffic < 100) {
+    statusEl.innerHTML = "<span class='success'>Normal Traffic</span>";
+  } else if (traffic < 200) {
+    statusEl.innerHTML = "<span class='warning'>Medium Traffic</span>";
+  } else {
+    statusEl.innerHTML = "<span class='danger'>High Traffic</span>";
+    pods = Math.min(pods + 1, 6);
+    podsEl.innerText = pods;
+  }
 }
 
 setInterval(updateTraffic, 1000);
@@ -145,3 +183,5 @@ setInterval(updateTraffic, 1000);
 
 </body>
 </html>
+
+
